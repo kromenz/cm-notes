@@ -1,46 +1,24 @@
 package com.example.notes
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.notes.ui.theme.NotesTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.notes.database.NoteDatabase
+import com.example.notes.repository.NoteRepository
+import com.example.notes.viewmodel.NoteViewModel
+import com.example.notes.viewmodel.NoteViewModelFactory
+import com.example.notesroompractice.R
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    lateinit var noteViewModel: NoteViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            NotesTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
-        }
+        setContentView(R.layout.activity_main)
+        setupViewModel()
     }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    NotesTheme {
-        Greeting("Android")
+    private fun setupViewModel(){
+        val noteRepository = NoteRepository(NoteDatabase(this))
+        val viewModelProviderFactory = NoteViewModelFactory(application, noteRepository)
+        noteViewModel = ViewModelProvider(this, viewModelProviderFactory)[NoteViewModel::class.java]
     }
 }
