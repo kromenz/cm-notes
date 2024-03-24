@@ -20,7 +20,7 @@
             android:fontFamily="@font/poppins"
             android:text="Add Note."
             android:textStyle="bold"
-            android:textColor="@color/red"
+            android:textColor="@color/purple_700"
             android:textSize="24sp" />
 
         <EditText
@@ -36,10 +36,24 @@
             android:fontFamily="@font/poppins"/>
 
         <EditText
+            android:id="@+id/addNoteDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date (DD-MM-YYYY)"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:layout_below="@id/addNoteTitle"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins"
+            android:inputType="date"
+            android:importantForAccessibility="yes"
+            android:labelFor="@id/addNoteDate"/>
+
+        <EditText
             android:id="@+id/addNoteDesc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/addNoteTitle"
+            android:layout_below="@id/addNoteDate"
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins"
             android:gravity="top"

@@ -16,16 +16,34 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/noteTitle"
-                android:layout_weight="200"
-                android:textColor="@color/red"
-                android:fontFamily="@font/poppins"
-                android:text="Note Title"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/noteTitle"
+                    android:layout_weight="1"
+                    android:textColor="@color/purple_700"
+                    android:fontFamily="@font/poppins"
+                    android:text="Note Title"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/noteDate"
+                    android:layout_marginStart="8dp"
+                    android:text="Note Date"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/purple_500"/>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -36,7 +54,7 @@
                 android:text="Description"
                 android:textSize="14sp"
                 android:fontFamily="@font/poppins"
-                android:textColor="@color/pink"/>
+                android:textColor="@color/purple_500"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

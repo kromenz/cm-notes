@@ -1,12 +1,15 @@
 package com.example.notes.database
 
 import android.content.Context
+import com.example.notes.utils.Converters
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.notes.model.Note
 
 @Database(entities = [Note::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class NoteDatabase: RoomDatabase() {
     abstract fun getNoteDao(): NoteDao
 

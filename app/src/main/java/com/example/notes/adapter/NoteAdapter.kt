@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.notes.fragments.HomeFragmentDirections
 import com.example.notes.model.Note
 import com.example.notesroompractice.databinding.NoteLayoutBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
@@ -42,8 +44,12 @@ class NoteAdapter: RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val currentNote = differ.currentList[position]
 
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val formattedDate = dateFormat.format(currentNote.date)
+
         holder.itemBinding.noteTitle.text = currentNote.noteTitle
         holder.itemBinding.noteDesc.text = currentNote.note
+        holder.itemBinding.noteDate.text = formattedDate
 
         holder.itemView.setOnClickListener{
             val direction = HomeFragmentDirections.actionHomeFragmentToEditNoteFragment(currentNote)
