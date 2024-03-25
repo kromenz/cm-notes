@@ -18,7 +18,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
-            android:text="Add Note."
+            android:text="@string/add_note"
             android:textStyle="bold"
             android:textColor="@color/purple_700"
             android:textSize="24sp" />
@@ -27,7 +27,7 @@
             android:id="@+id/addNoteTitle"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:hint="Enter the title"
+            android:hint="@string/tit"
             android:padding="12dp"
             android:textSize="20sp"
             android:layout_below="@id/addNoteHeading"
@@ -39,7 +39,7 @@
             android:id="@+id/addNoteDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date (DD-MM-YYYY)"
+            android:hint="@string/date"
             android:padding="12dp"
             android:textSize="18sp"
             android:layout_below="@id/addNoteTitle"
@@ -57,7 +57,7 @@
             android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins"
             android:gravity="top"
-            android:hint="Enter the description"
+            android:hint="@string/desc"
             android:padding="12dp"
             android:textSize="18sp" />
 

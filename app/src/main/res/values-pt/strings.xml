@@ -2,4 +2,9 @@
 <resources>
     <string name="app_name">Notas</string>
     <string name="save">Guardar</string>
+    <string name="edit_note">Editar Nota</string>
+    <string name="add_note">Adicionar Nota</string>
+    <string name="tit">Introduza o título </string>
+    <string name="date">Data (dd-mm-yyyy)</string>
+    <string name="desc">Introduza a descrição</string>
 </resources>
