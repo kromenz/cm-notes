@@ -16,13 +16,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="40dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:text="@string/add_note"
+            android:textStyle="bold"
             android:textColor="@color/purple_700"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/addNoteTitle"
@@ -61,8 +60,6 @@
             android:hint="@string/desc"
             android:padding="12dp"
             android:textSize="18sp" />
-
-
 
     </RelativeLayout>
 </layout>

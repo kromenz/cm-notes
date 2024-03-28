@@ -6,5 +6,6 @@
     <string name="tit">Enter the title</string>
     <string name="date">Date (dd-mm-yyyy)</string>
     <string name="desc">Enter Description</string>
+    <string name="back">Back</string>
 
 </resources>

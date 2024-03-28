@@ -1,5 +1,6 @@
 package com.example.notes.fragments
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.provider.ContactsContract.CommonDataKinds.Note
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -19,6 +21,7 @@ import com.example.notes.viewmodel.NoteViewModel
 import com.example.notesroompractice.R
 import com.example.notesroompractice.databinding.FragmentAddNoteBinding
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -29,6 +32,8 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
 
     private lateinit var notesViewModel: NoteViewModel
     private lateinit var addNoteView: View
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +41,7 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
         // Inflate the layout for this fragment
         addNoteBinding = FragmentAddNoteBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,8 +51,35 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
 
         notesViewModel = (activity as MainActivity).noteViewModel
         addNoteView = view
+
+        // Initialize date picker
+        binding.addNoteDate.setOnClickListener { showDatePicker() }
+
     }
 
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            R.style.DatePickerDialogTheme,
+            { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+                val formattedDate = String.format(
+                    "%02d-%02d-%d",
+                    selectedDayOfMonth,
+                    selectedMonth + 1,
+                    selectedYear
+                )
+                binding.addNoteDate.text = formattedDate
+            },
+            year, month, dayOfMonth
+        )
+
+        datePickerDialog.show()
+    }
     private fun saveNote(view: View){
         val noteTitle = binding.addNoteTitle.text.toString().trim()
         val noteDesc = binding.addNoteDesc.text.toString().trim()
@@ -85,5 +118,10 @@ class AddNoteFragment : Fragment(R.layout.fragment_add_note), MenuProvider {
         super.onDestroy()
         addNoteBinding = null
     }
+
+    fun goBack(view: View) {
+        requireActivity().onBackPressed()
+    }
+
 
 }

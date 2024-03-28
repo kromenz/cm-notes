@@ -7,4 +7,5 @@
     <string name="tit">Introduza o título </string>
     <string name="date">Data (dd-mm-yyyy)</string>
     <string name="desc">Introduza a descrição</string>
+    <string name="back">Voltar</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.notes.fragments
 
 import android.app.AlertDialog
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,6 +22,7 @@ import com.example.notes.viewmodel.NoteViewModel
 import com.example.notesroompractice.R
 import com.example.notesroompractice.databinding.FragmentEditNoteBinding
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -58,6 +60,8 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
         val formattedDate = dateFormat.format(currentNote.date)
         binding.editNoteDate.setText(formattedDate)
 
+        // Initialize date picker
+        binding.editNoteDate.setOnClickListener { showDatePicker() }
 
         binding.editNoteFab.setOnClickListener{
             val noteTitle = binding.editNoteTitle.text.toString().trim()
@@ -80,6 +84,29 @@ class EditNoteFragment : Fragment(R.layout.fragment_edit_note), MenuProvider {
         }
     }
 
+    private fun showDatePicker() {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            R.style.DatePickerDialogTheme,
+            { _, selectedYear, selectedMonth, selectedDayOfMonth ->
+                val formattedDate = String.format(
+                    "%02d-%02d-%d",
+                    selectedDayOfMonth,
+                    selectedMonth + 1,
+                    selectedYear
+                )
+                binding.editNoteDate.text = formattedDate
+            },
+            year, month, dayOfMonth
+        )
+
+        datePickerDialog.show()
+    }
     private fun deleteNote(){
         AlertDialog.Builder(activity).apply {
             setTitle("Delete Note")
